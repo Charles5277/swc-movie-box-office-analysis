@@ -7,7 +7,27 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
-  modules: ["@nuxt/ui", "nuxt-charts"],
+  modules: ["@nuxtjs/seo", "@nuxt/ui", "nuxt-charts"],
+
+  site: {
+    url: "https://swc.yudefine.com",
+    name: "陽光女子合唱團票房分析",
+    description:
+      "追蹤台灣電影《陽光女子合唱團》票房數據，查看每週票房趨勢、累計票房、國產電影排行榜等即時分析資訊。",
+    defaultLocale: "zh-TW",
+  },
+
+  robots: {
+    blockAiBots: true,
+  },
+
+  sitemap: {
+    zeroRuntime: true,
+  },
+
+  ogImage: {
+    enabled: false,
+  },
 
   css: ["~/assets/css/main.css"],
 

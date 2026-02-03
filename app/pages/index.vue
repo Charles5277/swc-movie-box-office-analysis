@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { movieInfo } from "~/data/box-office";
+import {
+  movieInfo,
+  getLatestCumulativeRevenue,
+  getCurrentRanking,
+} from "~/data/box-office";
 
 const colorMode = useColorMode();
 
@@ -7,9 +11,30 @@ function toggleColorMode() {
   colorMode.preference = colorMode.value === "dark" ? "light" : "dark";
 }
 
-useHead({
-  title: `${movieInfo.title} - 台灣票房分析`,
+const pageTitle = `${movieInfo.title} - 台灣票房分析`;
+const pageDescription = `追蹤《${movieInfo.title}》票房表現，目前累計票房 ${(getLatestCumulativeRevenue() / 100_000_000).toFixed(2)} 億，台灣國產電影排行第 ${getCurrentRanking()} 名。每週更新票房趨勢、戲院數據等分析資訊。`;
+
+useSeoMeta({
+  title: pageTitle,
+  description: pageDescription,
+  ogTitle: pageTitle,
+  ogDescription: pageDescription,
+  ogImage: "/og-image.jpg",
+  ogType: "website",
+  twitterCard: "summary_large_image",
+  twitterImage: "/og-image.jpg",
 });
+
+useSchemaOrg([
+  defineWebPage({
+    name: pageTitle,
+    description: pageDescription,
+  }),
+  defineWebSite({
+    name: "陽光女子合唱團票房分析",
+    description: "追蹤台灣電影《陽光女子合唱團》票房數據即時分析",
+  }),
+]);
 </script>
 
 <template>
