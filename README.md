@@ -1,75 +1,46 @@
-# Nuxt Minimal Starter
+# 陽光女子合唱團 票房分析儀表板
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+台灣電影《陽光女子合唱團》票房數據視覺化分析專案。
 
-## Setup
+## 功能特色
 
-Make sure to install dependencies:
+- 📊 週票房趨勢追蹤
+- 🏆 國產電影票房排行對比
+- 📈 累計票房與觀影人次分析
+- 🎯 奪冠進度預測（目標：超越《海角七號》）
+- 🌙 深色模式支援
+
+## 技術棧
+
+- [Nuxt 4](https://nuxt.com/) - Vue 全棧框架
+- [@nuxt/ui](https://ui.nuxt.com/) - UI 元件庫
+- [nuxt-charts](https://github.com/nuxt-modules/charts) - 圖表視覺化
+- [Cloudflare Pages](https://pages.cloudflare.com/) - 部署平台
+
+## 開發
 
 ```bash
-# npm
-npm install
-
-# pnpm
+# 安裝依賴
 pnpm install
 
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
+# 啟動開發伺服器
 pnpm dev
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
+# 建置生產版本
 pnpm build
 
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
+# 預覽生產版本
 pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 資料來源
+
+- [國家影視聽中心 - 全國電影票房統計](https://tavis.tw/)
+
+## 授權
+
+MIT License
+
+---
+
+由 [Yudefine 域定資訊工作室](https://yudefine.com) 製作
