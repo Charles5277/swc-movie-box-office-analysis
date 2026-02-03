@@ -27,7 +27,7 @@ useHead({
 
     <UContainer class="py-10 lg:py-12">
       <!-- Hero Header -->
-      <header class="mb-10 text-center relative">
+      <header class="mb-10 text-center relative pt-2 lg:pt-0">
         <div class="absolute inset-0 -z-10 mx-auto w-full max-w-2xl h-32 bg-amber-500/10 dark:bg-amber-500/5 blur-3xl rounded-full" />
         <h1 class="text-4xl lg:text-5xl font-bold mb-3 tracking-tight">
           <span class="mr-2">☀️</span>
