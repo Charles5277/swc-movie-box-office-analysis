@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import '@nuxt/ui';
+@import "tailwindcss";
+@import "@nuxt/ui";
 
 /* Smooth page transitions */
 @layer base {
@@ -9,7 +9,9 @@
 
   /* 使用粉圓體作為全站字體 */
   body {
-    font-family: 'Huninn', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    font-family:
+      "Huninn", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", "Noto Color Emoji";
   }
 
   /* Respect user's motion preferences */
@@ -88,7 +90,7 @@
   }
 
   /* Table row hover effect */
-  [data-slot='tr']:hover {
+  [data-slot="tr"]:hover {
     @apply bg-neutral-50 dark:bg-neutral-800/50;
   }
 }
