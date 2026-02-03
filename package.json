@@ -1,13 +1,15 @@
 {
   "name": "swc-movie-box-office-analysis",
-  "type": "module",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "oxlint .",
+    "format": "oxfmt ."
   },
   "dependencies": {
     "@nuxt/ui": "^4.4.0",
@@ -18,6 +20,7 @@
   },
   "devDependencies": {
     "nuxt-charts-cli": "^1.0.1",
+    "oxfmt": "^0.28.0",
     "oxlint": "^1.43.0",
     "typescript": "^5.9.3"
   }
