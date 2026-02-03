@@ -1,31 +1,34 @@
 <script setup lang="ts">
-import { weeklyData, formatDateRangeShort } from '~/data/box-office'
+import { weeklyData, formatDateRangeShort } from "~/data/box-office";
 
 // 準備圖表資料，顯示增長率變化
 const chartData = weeklyData.slice(1).map((d) => ({
   week: d.week,
   dateRange: d.dateRange,
   changeRate: d.changeRate ?? 0,
-}))
+}));
 
 const categories = {
   changeRate: {
-    name: '週變動率（%）',
-    color: '#10b981', // emerald-500
+    name: "週變動率（%）",
+    color: "#10b981", // emerald-500
   },
-}
+};
 
 const xFormatter = (i: number) => {
-  const d = chartData[i]
-  return d ? formatDateRangeShort(d.dateRange) : ''
-}
+  const d = chartData[i];
+  return d ? formatDateRangeShort(d.dateRange) : "";
+};
+
+// 響應式 x 軸刻度數量
+const { xNumTicks } = useChartTicks(chartData.length);
 
 // 計算統計數據
-const positiveWeeks = chartData.filter((d) => d.changeRate > 0).length
-const negativeWeeks = chartData.filter((d) => d.changeRate < 0).length
-const maxGrowth = Math.max(...chartData.map((d) => d.changeRate))
-const maxGrowthWeek = chartData.find((d) => d.changeRate === maxGrowth)
-const maxGrowthDateRange = maxGrowthWeek?.dateRange ?? ''
+const positiveWeeks = chartData.filter((d) => d.changeRate > 0).length;
+const negativeWeeks = chartData.filter((d) => d.changeRate < 0).length;
+const maxGrowth = Math.max(...chartData.map((d) => d.changeRate));
+const maxGrowthWeek = chartData.find((d) => d.changeRate === maxGrowth);
+const maxGrowthDateRange = maxGrowthWeek?.dateRange ?? "";
 </script>
 
 <template>
@@ -42,11 +45,15 @@ const maxGrowthDateRange = maxGrowthWeek?.dateRange ?? ''
           </div>
         </div>
         <div class="flex items-center gap-1.5">
-          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300">
+          <span
+            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300"
+          >
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" />
             {{ positiveWeeks }}
           </span>
-          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300">
+          <span
+            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300"
+          >
             <span class="w-1.5 h-1.5 rounded-full bg-red-500" />
             {{ negativeWeeks }}
           </span>
@@ -59,7 +66,7 @@ const maxGrowthDateRange = maxGrowthWeek?.dateRange ?? ''
       :categories="categories"
       :height="256"
       :x-formatter="xFormatter"
-      :x-num-ticks="Math.ceil(chartData.length * 2 / 3)"
+      :x-num-ticks="xNumTicks"
       x-label="日期"
       :y-axis="['changeRate']"
       :bar-padding="0.4"

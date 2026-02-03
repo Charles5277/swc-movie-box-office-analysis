@@ -1,38 +1,41 @@
 <script setup lang="ts">
-import { weeklyData, calculateDerivedMetrics, formatDateRangeShort } from '~/data/box-office'
+import { weeklyData, calculateDerivedMetrics, formatDateRangeShort } from "~/data/box-office";
 
-const metrics = calculateDerivedMetrics(weeklyData)
+const metrics = calculateDerivedMetrics(weeklyData);
 
 // 計算整體平均票價
-const totalRevenue = weeklyData.reduce((sum, w) => sum + w.revenue, 0)
-const totalTickets = weeklyData.reduce((sum, w) => sum + w.tickets, 0)
-const overallAveragePrice = totalTickets > 0 ? totalRevenue / totalTickets : 0
+const totalRevenue = weeklyData.reduce((sum, w) => sum + w.revenue, 0);
+const totalTickets = weeklyData.reduce((sum, w) => sum + w.tickets, 0);
+const overallAveragePrice = totalTickets > 0 ? totalRevenue / totalTickets : 0;
 
 const chartData = metrics.map((m, i) => ({
   week: m.week,
-  dateRange: weeklyData[i]?.dateRange ?? '',
+  dateRange: weeklyData[i]?.dateRange ?? "",
   price: Math.round(m.averageTicketPrice),
   average: Math.round(overallAveragePrice),
-}))
+}));
 
 const categories = {
   price: {
-    name: '週平均票價（元）',
-    color: '#f59e0b', // amber-500 - 主要數據
+    name: "週平均票價（元）",
+    color: "#f59e0b", // amber-500 - 主要數據
   },
   average: {
-    name: '整體平均票價',
-    color: '#6b7280', // neutral - 基準線
+    name: "整體平均票價",
+    color: "#6b7280", // neutral - 基準線
   },
-}
+};
 
 const xFormatter = (i: number) => {
-  const d = chartData[i]
-  return d ? formatDateRangeShort(d.dateRange) : ''
-}
+  const d = chartData[i];
+  return d ? formatDateRangeShort(d.dateRange) : "";
+};
 
-const minPrice = Math.min(...chartData.map((d) => d.price))
-const maxPrice = Math.max(...chartData.map((d) => d.price))
+// 響應式 x 軸刻度數量
+const { xNumTicks } = useChartTicks(chartData.length);
+
+const minPrice = Math.min(...chartData.map((d) => d.price));
+const maxPrice = Math.max(...chartData.map((d) => d.price));
 </script>
 
 <template>
@@ -59,7 +62,7 @@ const maxPrice = Math.max(...chartData.map((d) => d.price))
       :categories="categories"
       :height="256"
       :x-formatter="xFormatter"
-      :x-num-ticks="Math.ceil(chartData.length * 2 / 3)"
+      :x-num-ticks="xNumTicks"
       x-label="日期"
       y-label="元"
     />
@@ -76,7 +79,9 @@ const maxPrice = Math.max(...chartData.map((d) => d.price))
         </div>
         <div>
           <span class="text-neutral-500 dark:text-neutral-400">價差</span>
-          <p class="font-semibold text-neutral-800 dark:text-neutral-200">{{ maxPrice - minPrice }} 元</p>
+          <p class="font-semibold text-neutral-800 dark:text-neutral-200">
+            {{ maxPrice - minPrice }} 元
+          </p>
         </div>
       </div>
     </template>

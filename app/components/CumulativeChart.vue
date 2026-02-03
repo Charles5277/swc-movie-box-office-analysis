@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { weeklyData, targetRevenue, getProgressPercentage, formatDateRangeShort } from '~/data/box-office'
+import {
+  weeklyData,
+  targetRevenue,
+  getProgressPercentage,
+  formatDateRangeShort,
+} from "~/data/box-office";
 
 // 只顯示實際資料
 const chartData = weeklyData.map((d) => ({
@@ -7,30 +12,33 @@ const chartData = weeklyData.map((d) => ({
   dateRange: d.dateRange,
   cumulative: d.cumulativeRevenue / 100_000_000,
   target: targetRevenue / 100_000_000,
-}))
+}));
 
 const categories = {
   cumulative: {
-    name: '累計票房（億元）',
-    color: '#f59e0b',
+    name: "累計票房（億元）",
+    color: "#f59e0b",
   },
   target: {
-    name: '目標（海角七號）',
-    color: '#ef4444',
+    name: "目標（海角七號）",
+    color: "#ef4444",
   },
-}
+};
 
 const xFormatter = (i: number) => {
-  const d = chartData[i]
-  return d ? formatDateRangeShort(d.dateRange) : ''
-}
+  const d = chartData[i];
+  return d ? formatDateRangeShort(d.dateRange) : "";
+};
 
-const yFormatter = (tick: number) => tick === 0 ? '0' : `${tick.toFixed(1)} 億`
+const yFormatter = (tick: number) => (tick === 0 ? "0" : `${tick.toFixed(1)} 億`);
 
 // 限制 Y 軸最多顯示 6 個刻度
-const yNumTicks = 6
+const yNumTicks = 6;
 
-const progress = Math.round(getProgressPercentage())
+// 響應式 x 軸刻度數量
+const { xNumTicks } = useChartTicks(chartData.length);
+
+const progress = Math.round(getProgressPercentage());
 </script>
 
 <template>
@@ -46,11 +54,7 @@ const progress = Math.round(getProgressPercentage())
             <p class="text-xs text-neutral-500 dark:text-neutral-400">票房累積成長曲線</p>
           </div>
         </div>
-        <UBadge
-          :color="progress >= 100 ? 'success' : 'warning'"
-          variant="soft"
-          size="sm"
-        >
+        <UBadge :color="progress >= 100 ? 'success' : 'warning'" variant="soft" size="sm">
           達成率：{{ progress }}%
         </UBadge>
       </div>
@@ -61,7 +65,7 @@ const progress = Math.round(getProgressPercentage())
       :categories="categories"
       :height="256"
       :x-formatter="xFormatter"
-      :x-num-ticks="Math.ceil(chartData.length * 2 / 3)"
+      :x-num-ticks="xNumTicks"
       :y-formatter="yFormatter"
       :y-num-ticks="yNumTicks"
       x-label="日期"
