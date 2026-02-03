@@ -25,8 +25,8 @@ const xFormatter = (i: number) => {
   return d ? formatDateRangeShort(d.dateRange) : "";
 };
 
-// 響應式 x 軸刻度數量
-const { xNumTicks } = useChartTicks(chartData.length);
+// 響應式 x 軸刻度
+const { xExplicitTicks } = useChartTicks(chartData.length);
 
 // 找出最大增長週
 const maxGrowthWeek = chartData.reduce((max, curr) =>
@@ -58,7 +58,7 @@ const maxGrowthWeek = chartData.reduce((max, curr) =>
       :categories="categories"
       :height="256"
       :x-formatter="xFormatter"
-      :x-num-ticks="xNumTicks"
+      :x-explicit-ticks="xExplicitTicks"
       x-label="日期"
       :y-axis="['changeRate', 'theaters']"
       :bar-padding="0.35"

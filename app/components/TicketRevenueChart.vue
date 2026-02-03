@@ -9,11 +9,15 @@ const chartData = weeklyData.map((d) => ({
   tickets: d.tickets / 10_000,
 }));
 
-const categories = {
+// DualChart: 左 Y 軸用 Bar（票房），右 Y 軸用 Line（人次）
+const barCategories = {
   revenue: {
     name: "週票房（億元）",
     color: "#f59e0b", // amber-500 - 主要票房數據
   },
+};
+
+const lineCategories = {
   tickets: {
     name: "週票數（萬人）",
     color: "#10b981", // emerald-500 - 次要指標
@@ -25,13 +29,13 @@ const xFormatter = (i: number) => {
   return d ? formatDateRangeShort(d.dateRange) : "";
 };
 
-const yFormatter = (tick: number) => (tick === 0 ? "0" : `${tick.toFixed(1)} 億`);
+const yFormatter = (tick: number) => (tick === 0 ? "0" : `${tick.toFixed(1)}`);
 
 // 限制 Y 軸最多顯示 6 個刻度
 const yNumTicks = 6;
 
-// 響應式 x 軸刻度數量
-const { xNumTicks } = useChartTicks(chartData.length);
+// 響應式 x 軸刻度
+const { xExplicitTicks } = useChartTicks(chartData.length);
 
 // 計算平均票價
 const avgPrices = weeklyData.map((d) => ({
@@ -63,15 +67,20 @@ const overallAvgPrice = Math.round(totalRevenue / totalTickets);
       </div>
     </template>
 
-    <AreaChart
+    <DualChart
       :data="chartData"
-      :categories="categories"
+      :bar-categories="barCategories"
+      :line-categories="lineCategories"
+      :bar-y-axis="['revenue']"
+      :line-y-axis="['tickets']"
       :height="256"
       :x-formatter="xFormatter"
-      :x-num-ticks="xNumTicks"
+      :x-explicit-ticks="xExplicitTicks"
       :y-formatter="yFormatter"
       :y-num-ticks="yNumTicks"
       x-label="日期"
+      y-label="票房（億元）"
+      y-label-secondary="人次（萬）"
     />
 
     <template #footer>

@@ -35,8 +35,8 @@ const yFormatter = (tick: number) => (tick === 0 ? "0" : `${tick.toFixed(1)} 億
 // 限制 Y 軸最多顯示 6 個刻度
 const yNumTicks = 6;
 
-// 響應式 x 軸刻度數量
-const { xNumTicks } = useChartTicks(chartData.length);
+// 響應式 x 軸刻度
+const { xExplicitTicks } = useChartTicks(chartData.length);
 
 const progress = Math.round(getProgressPercentage());
 </script>
@@ -65,7 +65,7 @@ const progress = Math.round(getProgressPercentage());
       :categories="categories"
       :height="256"
       :x-formatter="xFormatter"
-      :x-num-ticks="xNumTicks"
+      :x-explicit-ticks="xExplicitTicks"
       :y-formatter="yFormatter"
       :y-num-ticks="yNumTicks"
       x-label="日期"

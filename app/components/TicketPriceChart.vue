@@ -31,8 +31,8 @@ const xFormatter = (i: number) => {
   return d ? formatDateRangeShort(d.dateRange) : "";
 };
 
-// 響應式 x 軸刻度數量
-const { xNumTicks } = useChartTicks(chartData.length);
+// 響應式 x 軸刻度
+const { xExplicitTicks } = useChartTicks(chartData.length);
 
 const minPrice = Math.min(...chartData.map((d) => d.price));
 const maxPrice = Math.max(...chartData.map((d) => d.price));
@@ -62,7 +62,7 @@ const maxPrice = Math.max(...chartData.map((d) => d.price));
       :categories="categories"
       :height="256"
       :x-formatter="xFormatter"
-      :x-num-ticks="xNumTicks"
+      :x-explicit-ticks="xExplicitTicks"
       x-label="日期"
       y-label="元"
     />
