@@ -129,16 +129,14 @@ export const movieInfo = {
 };
 
 // 即時單日資訊（臨時追蹤用，會被完整週資料取代）
-export const latestDaily: DailySnapshot | null = null;
-// 範例格式：
-// export const latestDaily: DailySnapshot = {
-//   date: '2026/01/31',
-//   dayOfWeek: '六',
-//   dailyRevenue: 30_278_000,
-//   cumulativeRevenue: 366_046_000,
-//   updatedAt: '2026-01-31 23:00:00',
-//   isEstimate: true,
-// }
+export const latestDaily: DailySnapshot = {
+  date: "2026/02/02",
+  dayOfWeek: "一",
+  dailyRevenue: 12_888_000,
+  cumulativeRevenue: 406_684_000,
+  updatedAt: "2026-02-03 14:33:21",
+  isEstimate: true,
+};
 
 // 完整週資料（確認後的正式資料）
 export const weeklyData: WeeklyBoxOffice[] = [
@@ -246,8 +244,8 @@ export const taiwanMovieRankings: MovieRanking[] = [
   { rank: 3, title: "那些年，我們一起追的女孩", revenue: 429_050_000, year: 2011, isActive: false },
   { rank: 4, title: "大尾鱸鰻", revenue: 428_020_000, year: 2013, isActive: false },
   { rank: 5, title: "我的少女時代", revenue: 410_000_000, year: 2015, isActive: false },
-  { rank: 6, title: "當男人戀愛時", revenue: 405_490_000, year: 2021, isActive: false },
-  { rank: 7, title: "陽光女子合唱團", revenue: 393_702_763, year: 2025, isActive: true },
+  { rank: 6, title: "陽光女子合唱團", revenue: 406_684_000, year: 2025, isActive: true },
+  { rank: 7, title: "當男人戀愛時", revenue: 405_490_000, year: 2021, isActive: false },
   {
     rank: 8,
     title: "關於我和鬼變成家人的那件事",
