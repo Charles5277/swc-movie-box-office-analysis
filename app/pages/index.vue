@@ -119,6 +119,7 @@ useHead({
           >國家影視聽中心票房資訊系統</a>
         </p>
         <p class="mt-2">最後更新：{{ movieInfo.lastUpdated }}</p>
+        <p class="mt-2">Created by Yudefine 域定資訊工作室</p>
       </footer>
     </UContainer>
   </div>
