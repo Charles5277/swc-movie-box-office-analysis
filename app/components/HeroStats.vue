@@ -23,8 +23,8 @@ const stats = [
     label: "累計票房",
     value: formatCurrency(latestCumulativeRevenue),
     icon: "i-lucide-banknote",
-    color: "text-emerald-500",
-    bgColor: "bg-emerald-500/10",
+    color: "text-amber-500",
+    bgColor: "bg-amber-500/10",
     highlight: true,
   },
   {
@@ -58,7 +58,7 @@ const stats = [
       :key="stat.label"
       :class="[
         'transition-all duration-200 hover:shadow-lg cursor-default',
-        stat.highlight && 'ring-2 ring-emerald-500/20 dark:ring-emerald-400/20',
+        stat.highlight && 'ring-2 ring-amber-500/20 dark:ring-amber-400/20',
       ]"
     >
       <div class="flex items-center gap-4">
@@ -73,7 +73,7 @@ const stats = [
             :class="[
               'text-xl font-bold truncate',
               stat.highlight
-                ? 'text-emerald-600 dark:text-emerald-400'
+                ? 'text-amber-600 dark:text-amber-400'
                 : 'text-neutral-900 dark:text-neutral-100',
             ]"
           >

@@ -17,7 +17,7 @@ const chartData = weeklyData.map((d) => ({
 const categories = {
   cumulative: {
     name: "累計票房（億元）",
-    color: "#10b981",
+    color: "#f59e0b",
   },
   target: {
     name: "目標（海角七號）",
@@ -46,8 +46,8 @@ const progress = Math.round(getProgressPercentage());
     <template #header>
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <div class="p-2 rounded-lg bg-emerald-500/10">
-            <UIcon name="i-lucide-chart-line" class="text-xl text-emerald-500" />
+          <div class="p-2 rounded-lg bg-amber-500/10">
+            <UIcon name="i-lucide-chart-line" class="text-xl text-amber-500" />
           </div>
           <div>
             <h3 class="font-semibold text-neutral-800 dark:text-neutral-200">累計票房</h3>
