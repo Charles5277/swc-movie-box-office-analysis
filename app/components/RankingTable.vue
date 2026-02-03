@@ -4,10 +4,10 @@ import { taiwanMovieRankings, getLatestCumulativeRevenue } from "~/data/box-offi
 import type { TableColumn } from "@nuxt/ui";
 import type { MovieRanking } from "~/types";
 
-// 擴充型別：加入差距與百分比
+// 擴充型別：加入差距與差異百分比
 interface EnhancedMovieRanking extends MovieRanking {
   gapFromSWC: number; // 與陽光女子合唱團的差距（正值=領先，負值=落後）
-  percentOfSWC: number; // 相對陽光女子合唱團的百分比
+  percentOfSWC: number; // 相對陽光女子合唱團的差異百分比（正值=領先，負值=落後；下限 -100%）
 }
 
 function formatCurrency(value: number): string {
@@ -33,7 +33,10 @@ function formatGap(value: number): string {
 }
 
 function formatPercent(value: number): string {
-  return `${value.toFixed(1)}%`;
+  const rounded = Number(value.toFixed(1));
+  const normalized = Object.is(rounded, -0) ? 0 : rounded;
+  const sign = normalized > 0 ? "+" : "";
+  return `${sign}${normalized.toFixed(1)}%`;
 }
 
 // 取得陽光女子合唱團的最新票房（使用即時資料）
@@ -43,11 +46,13 @@ const swcRevenue = getLatestCumulativeRevenue();
 const enhancedRankings = computed<EnhancedMovieRanking[]>(() => {
   return taiwanMovieRankings.map((movie) => {
     const movieRevenue = movie.isActive ? swcRevenue : movie.revenue;
+    const rawPercentDiff = swcRevenue > 0 ? ((movieRevenue - swcRevenue) / swcRevenue) * 100 : 0;
+    const clampedPercentDiff = Math.max(rawPercentDiff, -100);
     return {
       ...movie,
       revenue: movieRevenue,
       gapFromSWC: movieRevenue - swcRevenue,
-      percentOfSWC: swcRevenue > 0 ? (movieRevenue / swcRevenue) * 100 : 0,
+      percentOfSWC: clampedPercentDiff,
     };
   });
 });
@@ -57,7 +62,7 @@ const columns: TableColumn<EnhancedMovieRanking>[] = [
   { accessorKey: "title", header: "片名" },
   { accessorKey: "revenue", header: "票房" },
   { accessorKey: "gapFromSWC", header: "差距" },
-  { accessorKey: "percentOfSWC", header: "相對%" },
+  { accessorKey: "percentOfSWC", header: "相對差異%" },
   { accessorKey: "year", header: "年份" },
   { accessorKey: "isActive", header: "狀態" },
 ];
@@ -191,7 +196,7 @@ const tableMeta = {
           <span
             :class="[
               'font-mono text-sm',
-              row.original.percentOfSWC > 100
+              row.original.percentOfSWC > 0
                 ? 'text-rose-600 dark:text-rose-400'
                 : 'text-emerald-600 dark:text-emerald-400',
             ]"
@@ -202,8 +207,8 @@ const tableMeta = {
           <div class="w-16 h-1.5 bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden">
             <div
               class="h-full rounded-full transition-all duration-300"
-              :class="[row.original.percentOfSWC > 100 ? 'bg-rose-500' : 'bg-emerald-500']"
-              :style="{ width: `${Math.min(row.original.percentOfSWC, 100)}%` }"
+              :class="[row.original.percentOfSWC > 0 ? 'bg-rose-500' : 'bg-emerald-500']"
+              :style="{ width: `${Math.max(0, Math.min(100 + row.original.percentOfSWC, 100))}%` }"
             />
           </div>
         </div>

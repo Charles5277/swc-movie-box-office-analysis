@@ -82,9 +82,9 @@ const maxGrowthDateRange = maxGrowthWeek?.dateRange ?? "";
           <p class="text-xs text-red-600 dark:text-red-400 mb-1">負成長</p>
           <p class="font-bold text-red-700 dark:text-red-300">{{ negativeWeeks }} 週</p>
         </div>
-        <div class="p-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-center">
-          <p class="text-xs text-amber-600 dark:text-amber-400 mb-1">最高成長</p>
-          <p class="font-bold text-amber-700 dark:text-amber-300">
+        <div class="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 text-center">
+          <p class="text-xs text-emerald-600 dark:text-emerald-400 mb-1">最高成長</p>
+          <p class="font-bold text-emerald-700 dark:text-emerald-300">
             {{ formatDateRangeShort(maxGrowthDateRange) }}
           </p>
         </div>

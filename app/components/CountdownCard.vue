@@ -22,7 +22,7 @@ function formatCurrency(value: number): string {
       <!-- Progress Circle Section -->
       <div class="flex-shrink-0 relative">
         <div
-          class="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-orange-500/20 dark:from-amber-500/10 dark:to-orange-500/10 rounded-full blur-2xl scale-150"
+          class="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-green-500/20 dark:from-emerald-500/10 dark:to-green-500/10 rounded-full blur-2xl scale-150"
         />
         <ProgressCircle
           :value="Math.min(Math.round(progress), 100)"
@@ -36,14 +36,14 @@ function formatCurrency(value: number): string {
       <div class="flex-1 space-y-6 w-full">
         <!-- Target Info -->
         <div
-          class="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200/50 dark:border-amber-700/30"
+          class="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 border border-emerald-200/50 dark:border-emerald-700/30"
         >
-          <div class="flex-shrink-0 p-2.5 rounded-lg bg-amber-500/10">
-            <UIcon name="i-lucide-target" class="text-2xl text-amber-600 dark:text-amber-400" />
+          <div class="flex-shrink-0 p-2.5 rounded-lg bg-emerald-500/10">
+            <UIcon name="i-lucide-target" class="text-2xl text-emerald-600 dark:text-emerald-400" />
           </div>
           <div>
             <p class="text-sm text-neutral-600 dark:text-neutral-400">目標：超越《海角七號》</p>
-            <p class="text-xl font-bold text-amber-700 dark:text-amber-300">
+            <p class="text-xl font-bold text-emerald-700 dark:text-emerald-300">
               {{ formatCurrency(targetRevenue) }}
             </p>
           </div>
