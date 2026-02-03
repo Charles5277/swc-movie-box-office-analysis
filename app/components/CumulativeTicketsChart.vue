@@ -1,26 +1,17 @@
 <script setup lang="ts">
 import { weeklyData, formatDateRangeShort } from "~/data/box-office";
 
-// 準備圖表資料：累計票數（萬）與累計票房（億元）
+// 準備圖表資料：累計人次（萬）
 const chartData = weeklyData.map((d) => ({
   week: d.week,
   dateRange: d.dateRange,
   cumulativeTickets: d.cumulativeTickets / 10_000,
-  cumulativeRevenue: d.cumulativeRevenue / 100_000_000,
 }));
 
-// DualChart: 左 Y 軸用 Bar（票房），右 Y 軸用 Line（人次）
-const barCategories = {
-  cumulativeRevenue: {
-    name: "累計票房（億元）",
-    color: "#f59e0b", // amber-500 - 主要票房數據
-  },
-};
-
-const lineCategories = {
+const categories = {
   cumulativeTickets: {
     name: "累計人次（萬）",
-    color: "#10b981", // emerald-500 - 人次指標
+    color: "#10b981", // emerald-500
   },
 };
 
@@ -29,7 +20,7 @@ const xFormatter = (i: number) => {
   return d ? formatDateRangeShort(d.dateRange) : "";
 };
 
-const yFormatter = (tick: number) => (tick === 0 ? "0" : `${tick.toFixed(1)}`);
+const yFormatter = (tick: number) => (tick === 0 ? "0" : `${tick.toFixed(0)}`);
 
 // 限制 Y 軸最多顯示 6 個刻度
 const yNumTicks = 6;
@@ -37,15 +28,21 @@ const yNumTicks = 6;
 // 響應式 x 軸刻度
 const { xExplicitTicks } = useChartTicks(chartData.length);
 
+// 累計票房輔助資訊
+const latestWeek = weeklyData[weeklyData.length - 1];
+const latestRevenue = latestWeek?.cumulativeRevenue ?? 0;
+const formatRevenue = (latestRevenue / 100_000_000).toFixed(2);
+
+// 累計人次
+const latestTickets = latestWeek?.cumulativeTickets ?? 0;
+const formatTickets = new Intl.NumberFormat("zh-TW").format(Math.round(latestTickets));
+
 // 里程碑資料
 const milestones = [
   { tickets: 10, label: "10萬人" },
   { tickets: 50, label: "50萬人" },
   { tickets: 100, label: "100萬人" },
 ];
-
-const latestTickets = weeklyData[weeklyData.length - 1]?.cumulativeTickets ?? 0;
-const formatTickets = new Intl.NumberFormat("zh-TW").format(Math.round(latestTickets));
 </script>
 
 <template>
@@ -58,27 +55,25 @@ const formatTickets = new Intl.NumberFormat("zh-TW").format(Math.round(latestTic
           </div>
           <div>
             <h3 class="font-semibold text-neutral-800 dark:text-neutral-200">累計觀影人次</h3>
-            <p class="text-xs text-neutral-500 dark:text-neutral-400">票房與人次累積成長</p>
+            <p class="text-xs text-neutral-500 dark:text-neutral-400">
+              累計票房：{{ formatRevenue }} 億元
+            </p>
           </div>
         </div>
         <UBadge color="emerald" variant="soft" size="sm"> {{ formatTickets }} 人次 </UBadge>
       </div>
     </template>
 
-    <DualChart
+    <LineChart
       :data="chartData"
-      :bar-categories="barCategories"
-      :line-categories="lineCategories"
-      :bar-y-axis="['cumulativeRevenue']"
-      :line-y-axis="['cumulativeTickets']"
+      :categories="categories"
       :height="256"
       :x-formatter="xFormatter"
       :x-explicit-ticks="xExplicitTicks"
       :y-formatter="yFormatter"
       :y-num-ticks="yNumTicks"
       x-label="日期"
-      y-label="票房（億元）"
-      y-label-secondary="人次（萬）"
+      y-label="萬人"
     />
 
     <template #footer>
