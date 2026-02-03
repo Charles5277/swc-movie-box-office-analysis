@@ -1,83 +1,83 @@
 <script setup lang="ts">
-import type { Row } from '@tanstack/vue-table'
-import { taiwanMovieRankings, getLatestCumulativeRevenue } from '~/data/box-office'
-import type { TableColumn } from '@nuxt/ui'
-import type { MovieRanking } from '~/types'
+import type { Row } from "@tanstack/vue-table";
+import { taiwanMovieRankings, getLatestCumulativeRevenue } from "~/data/box-office";
+import type { TableColumn } from "@nuxt/ui";
+import type { MovieRanking } from "~/types";
 
 // 擴充型別：加入差距與百分比
 interface EnhancedMovieRanking extends MovieRanking {
-  gapFromSWC: number // 與陽光女子合唱團的差距（正值=領先，負值=落後）
-  percentOfSWC: number // 相對陽光女子合唱團的百分比
+  gapFromSWC: number; // 與陽光女子合唱團的差距（正值=領先，負值=落後）
+  percentOfSWC: number; // 相對陽光女子合唱團的百分比
 }
 
 function formatCurrency(value: number): string {
-  return new Intl.NumberFormat('zh-TW', {
-    style: 'currency',
-    currency: 'TWD',
+  return new Intl.NumberFormat("zh-TW", {
+    style: "currency",
+    currency: "TWD",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  }).format(value)
+  }).format(value);
 }
 
 function formatGap(value: number): string {
-  const absValue = Math.abs(value)
-  const formatted = new Intl.NumberFormat('zh-TW', {
-    style: 'currency',
-    currency: 'TWD',
+  const absValue = Math.abs(value);
+  const formatted = new Intl.NumberFormat("zh-TW", {
+    style: "currency",
+    currency: "TWD",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  }).format(absValue)
-  if (value > 0) return `+${formatted}`
-  if (value < 0) return `-${formatted}`
-  return '—'
+  }).format(absValue);
+  if (value > 0) return `+${formatted}`;
+  if (value < 0) return `-${formatted}`;
+  return "—";
 }
 
 function formatPercent(value: number): string {
-  return `${value.toFixed(1)}%`
+  return `${value.toFixed(1)}%`;
 }
 
 // 取得陽光女子合唱團的最新票房（使用即時資料）
-const swcRevenue = getLatestCumulativeRevenue()
+const swcRevenue = getLatestCumulativeRevenue();
 
 // 計算擴充資料
 const enhancedRankings = computed<EnhancedMovieRanking[]>(() => {
   return taiwanMovieRankings.map((movie) => {
-    const movieRevenue = movie.isActive ? swcRevenue : movie.revenue
+    const movieRevenue = movie.isActive ? swcRevenue : movie.revenue;
     return {
       ...movie,
       revenue: movieRevenue,
       gapFromSWC: movieRevenue - swcRevenue,
       percentOfSWC: swcRevenue > 0 ? (movieRevenue / swcRevenue) * 100 : 0,
-    }
-  })
-})
+    };
+  });
+});
 
 const columns: TableColumn<EnhancedMovieRanking>[] = [
-  { accessorKey: 'rank', header: '排名' },
-  { accessorKey: 'title', header: '片名' },
-  { accessorKey: 'revenue', header: '票房' },
-  { accessorKey: 'gapFromSWC', header: '差距' },
-  { accessorKey: 'percentOfSWC', header: '相對%' },
-  { accessorKey: 'year', header: '年份' },
-  { accessorKey: 'isActive', header: '狀態' },
-]
+  { accessorKey: "rank", header: "排名" },
+  { accessorKey: "title", header: "片名" },
+  { accessorKey: "revenue", header: "票房" },
+  { accessorKey: "gapFromSWC", header: "差距" },
+  { accessorKey: "percentOfSWC", header: "相對%" },
+  { accessorKey: "year", header: "年份" },
+  { accessorKey: "isActive", header: "狀態" },
+];
 
 // 統計資料
-const totalMovies = taiwanMovieRankings.length
-const activeCount = taiwanMovieRankings.filter((m) => m.isActive).length
+const totalMovies = taiwanMovieRankings.length;
+const activeCount = taiwanMovieRankings.filter((m) => m.isActive).length;
 
 // 表格 meta 設定：動態 row class
 const tableMeta = {
   class: {
     tr: (row: Row<EnhancedMovieRanking>) => {
       if (row.original.isActive) {
-        return 'bg-amber-50/50 dark:bg-amber-900/10 border-l-2 border-l-amber-500'
+        return "bg-amber-50/50 dark:bg-amber-900/10 border-l-2 border-l-amber-500";
       }
       // 斑馬紋效果
-      return row.index % 2 === 0 ? '' : 'bg-neutral-50/50 dark:bg-neutral-800/30'
+      return row.index % 2 === 0 ? "" : "bg-neutral-50/50 dark:bg-neutral-800/30";
     },
   },
-}
+};
 </script>
 
 <template>
@@ -89,14 +89,14 @@ const tableMeta = {
             <UIcon name="i-lucide-list-ordered" class="text-xl text-amber-500" />
           </div>
           <div>
-            <h3 class="text-xl font-bold text-neutral-800 dark:text-neutral-200">台灣電影票房排行榜</h3>
+            <h3 class="text-xl font-bold text-neutral-800 dark:text-neutral-200">
+              台灣電影票房排行榜
+            </h3>
             <p class="text-xs text-neutral-500 dark:text-neutral-400">台灣本土電影歷史票房紀錄</p>
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <UBadge color="neutral" variant="soft" size="sm">
-            共 {{ totalMovies }} 部
-          </UBadge>
+          <UBadge color="neutral" variant="soft" size="sm"> 共 {{ totalMovies }} 部 </UBadge>
           <UBadge v-if="activeCount > 0" color="green" variant="soft" size="md">
             {{ activeCount }} 部熱映中
           </UBadge>
@@ -104,27 +104,26 @@ const tableMeta = {
       </div>
     </template>
 
-    <UTable
-      :data="enhancedRankings"
-      :columns="columns"
-      :meta="tableMeta"
-      :ui="{ td: 'py-4' }"
-    >
+    <UTable :data="enhancedRankings" :columns="columns" :meta="tableMeta" :ui="{ td: 'py-4' }">
       <template #rank-cell="{ row }">
         <div class="flex items-center gap-2">
           <!-- 前三名使用不同 icon -->
           <template v-if="row.original.rank <= 3">
             <UIcon
               :name="
-                row.original.rank === 1 ? 'i-heroicons-trophy-solid' :
-                row.original.rank === 2 ? 'i-heroicons-trophy-solid' :
-                'i-heroicons-trophy-solid'
+                row.original.rank === 1
+                  ? 'i-heroicons-trophy-solid'
+                  : row.original.rank === 2
+                    ? 'i-heroicons-trophy-solid'
+                    : 'i-heroicons-trophy-solid'
               "
               :class="[
                 'text-xl',
-                row.original.rank === 1 ? 'text-yellow-500' :
-                row.original.rank === 2 ? 'text-gray-400' :
-                'text-orange-700'
+                row.original.rank === 1
+                  ? 'text-yellow-500'
+                  : row.original.rank === 2
+                    ? 'text-gray-400'
+                    : 'text-orange-700',
               ]"
             />
           </template>
@@ -146,7 +145,7 @@ const tableMeta = {
               'font-medium',
               row.original.isActive
                 ? 'text-amber-600 dark:text-amber-400 font-bold text-lg'
-                : 'text-neutral-800 dark:text-neutral-200'
+                : 'text-neutral-800 dark:text-neutral-200',
             ]"
           >
             {{ row.original.title }}
@@ -160,7 +159,7 @@ const tableMeta = {
             'font-mono text-sm',
             row.original.isActive
               ? 'text-amber-600 dark:text-amber-400 font-semibold'
-              : 'text-neutral-700 dark:text-neutral-300'
+              : 'text-neutral-700 dark:text-neutral-300',
           ]"
         >
           {{ formatCurrency(row.original.revenue) }}
@@ -168,10 +167,7 @@ const tableMeta = {
       </template>
 
       <template #gapFromSWC-cell="{ row }">
-        <span
-          v-if="row.original.isActive"
-          class="text-sm text-neutral-400 dark:text-neutral-500"
-        >
+        <span v-if="row.original.isActive" class="text-sm text-neutral-400 dark:text-neutral-500">
           —
         </span>
         <span
@@ -180,7 +176,7 @@ const tableMeta = {
             'font-mono text-sm font-medium',
             row.original.gapFromSWC > 0
               ? 'text-rose-600 dark:text-rose-400'
-              : 'text-emerald-600 dark:text-emerald-400'
+              : 'text-emerald-600 dark:text-emerald-400',
           ]"
         >
           {{ formatGap(row.original.gapFromSWC) }}
@@ -197,7 +193,7 @@ const tableMeta = {
               'font-mono text-sm',
               row.original.percentOfSWC > 100
                 ? 'text-rose-600 dark:text-rose-400'
-                : 'text-emerald-600 dark:text-emerald-400'
+                : 'text-emerald-600 dark:text-emerald-400',
             ]"
           >
             {{ formatPercent(row.original.percentOfSWC) }}
@@ -206,11 +202,7 @@ const tableMeta = {
           <div class="w-16 h-1.5 bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden">
             <div
               class="h-full rounded-full transition-all duration-300"
-              :class="[
-                row.original.percentOfSWC > 100
-                  ? 'bg-rose-500'
-                  : 'bg-emerald-500'
-              ]"
+              :class="[row.original.percentOfSWC > 100 ? 'bg-rose-500' : 'bg-emerald-500']"
               :style="{ width: `${Math.min(row.original.percentOfSWC, 100)}%` }"
             />
           </div>
@@ -224,15 +216,10 @@ const tableMeta = {
       </template>
 
       <template #isActive-cell="{ row }">
-        <span
-          v-if="row.original.isActive"
-          class="text-base text-green-600 dark:text-green-400"
-        >
+        <span v-if="row.original.isActive" class="text-base text-green-600 dark:text-green-400">
           熱映中
         </span>
-        <span v-else class="text-sm text-neutral-400 dark:text-neutral-500">
-          已下檔
-        </span>
+        <span v-else class="text-sm text-neutral-400 dark:text-neutral-500"> 已下檔 </span>
       </template>
     </UTable>
   </UCard>
