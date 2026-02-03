@@ -34,6 +34,10 @@ useSchemaOrg([
     name: "陽光女子合唱團票房分析",
     description: "追蹤台灣電影《陽光女子合唱團》票房數據即時分析",
   }),
+  defineOrganization({
+    name: "Yudefine 域定資訊工作室",
+    logo: "/android-chrome-512x512.png",
+  }),
 ]);
 </script>
 
