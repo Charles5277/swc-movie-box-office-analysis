@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { getGapToFirst, getProgressPercentage, targetRevenue, weeklyData } from "~/data/box-office";
+import { getGapToFirst, getProgressPercentage, targetRevenue, getLatestCumulativeRevenue } from "~/data/box-office";
 
 const gap = getGapToFirst();
 const progress = getProgressPercentage();
-const currentRevenue = weeklyData[weeklyData.length - 1].cumulativeRevenue;
+const currentRevenue = getLatestCumulativeRevenue();
 const isAchieved = gap <= 0;
 
 function formatCurrency(value: number): string {

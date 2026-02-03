@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { weeklyData, movieInfo, getCurrentRanking } from "~/data/box-office";
+import { weeklyData, movieInfo, getCurrentRanking, getLatestCumulativeRevenue } from "~/data/box-office";
 
 const latestData = weeklyData[weeklyData.length - 1];
+const latestCumulativeRevenue = getLatestCumulativeRevenue();
 const currentRanking = getCurrentRanking();
 
 function formatCurrency(value: number): string {
@@ -20,7 +21,7 @@ function formatNumber(value: number): string {
 const stats = [
   {
     label: "累計票房",
-    value: formatCurrency(latestData.cumulativeRevenue),
+    value: formatCurrency(latestCumulativeRevenue),
     icon: "i-lucide-banknote",
     color: "text-amber-500",
     bgColor: "bg-amber-500/10",

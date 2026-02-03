@@ -262,21 +262,21 @@ export const taiwanMovieRankings: MovieRanking[] = [
 export const targetRevenue = 534_350_000;
 
 export function getCurrentRanking(): number {
-  const latestWeek = weeklyData[weeklyData.length - 1];
-  if (!latestWeek) return 0;
-  return taiwanMovieRankings.findIndex((m) => m.revenue <= latestWeek.cumulativeRevenue) + 1;
+  const currentRevenue = getLatestCumulativeRevenue();
+  if (!currentRevenue) return 0;
+  return taiwanMovieRankings.findIndex((m) => m.revenue <= currentRevenue) + 1;
 }
 
 export function getGapToFirst(): number {
-  const latestWeek = weeklyData[weeklyData.length - 1];
-  if (!latestWeek) return targetRevenue;
-  return targetRevenue - latestWeek.cumulativeRevenue;
+  const currentRevenue = getLatestCumulativeRevenue();
+  if (!currentRevenue) return targetRevenue;
+  return targetRevenue - currentRevenue;
 }
 
 export function getProgressPercentage(): number {
-  const latestWeek = weeklyData[weeklyData.length - 1];
-  if (!latestWeek) return 0;
-  return (latestWeek.cumulativeRevenue / targetRevenue) * 100;
+  const currentRevenue = getLatestCumulativeRevenue();
+  if (!currentRevenue) return 0;
+  return (currentRevenue / targetRevenue) * 100;
 }
 
 // 衍生指標計算函數
