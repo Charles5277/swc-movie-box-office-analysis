@@ -102,9 +102,9 @@ export const movieInfo = {
   rating: "輔12級",
   runtime: "02:14:00",
   distributor: "壹壹喜喜電影股份有限公司",
-  lastUpdated: "2026-02-03 14:33:21",
+  lastUpdated: "2026-02-04 09:00:00",
   dataQuality: {
-    lastUpdated: "2026-02-03 14:33:21",
+    lastUpdated: "2026-02-04 09:00:00",
     dataSource: "國家影視聽中心票房資訊系統",
     totalWeeks: 9,
     missingData: [],
@@ -130,11 +130,11 @@ export const movieInfo = {
 
 // 即時單日資訊（臨時追蹤用，會被完整週資料取代）
 export const latestDaily: DailySnapshot = {
-  date: "2026/02/02",
-  dayOfWeek: "一",
-  dailyRevenue: 12_888_000,
-  cumulativeRevenue: 406_684_000,
-  updatedAt: "2026-02-03 14:33:21",
+  date: "2026/02/03",
+  dayOfWeek: "二",
+  dailyRevenue: 10_871_000,
+  cumulativeRevenue: 417_555_000,
+  updatedAt: "2026-02-04 09:00:00",
   isEstimate: true,
 };
 
@@ -233,7 +233,7 @@ export const weeklyData: WeeklyBoxOffice[] = [
 ];
 
 export const taiwanMovieRankings: MovieRanking[] = [
-  { rank: 1, title: "海角七號", revenue: 534_350_000, year: 2008, isActive: false },
+  { rank: 1, title: "海角七號", revenue: 534_351_817, year: 2008, isActive: false },
   {
     rank: 2,
     title: "賽德克·巴萊（上）：太陽旗",
@@ -241,23 +241,23 @@ export const taiwanMovieRankings: MovieRanking[] = [
     year: 2011,
     isActive: false,
   },
-  { rank: 3, title: "那些年，我們一起追的女孩", revenue: 429_050_000, year: 2011, isActive: false },
-  { rank: 4, title: "大尾鱸鰻", revenue: 428_020_000, year: 2013, isActive: false },
-  { rank: 5, title: "我的少女時代", revenue: 410_000_000, year: 2015, isActive: false },
-  { rank: 6, title: "陽光女子合唱團", revenue: 406_684_000, year: 2025, isActive: true },
-  { rank: 7, title: "當男人戀愛時", revenue: 405_490_000, year: 2021, isActive: false },
+  { rank: 3, title: "那些年，我們一起追的女孩", revenue: 429_054_382, year: 2011, isActive: false },
+  { rank: 4, title: "大尾鱸鰻", revenue: 428_027_419, year: 2013, isActive: false },
+  { rank: 5, title: "陽光女子合唱團", revenue: 417_555_000, year: 2025, isActive: true },
+  { rank: 6, title: "我的少女時代", revenue: 410_000_000, year: 2015, isActive: false },
+  { rank: 7, title: "當男人戀愛時", revenue: 405_402_260, year: 2021, isActive: false },
   {
     rank: 8,
     title: "關於我和鬼變成家人的那件事",
-    revenue: 363_800_000,
+    revenue: 363_806_015,
     year: 2023,
     isActive: false,
   },
   { rank: 9, title: "KANO", revenue: 348_360_000, year: 2014, isActive: false },
-  { rank: 10, title: "陣頭", revenue: 317_490_000, year: 2012, isActive: false },
+  { rank: 10, title: "陣頭", revenue: 317_499_033, year: 2012, isActive: false },
 ];
 
-export const targetRevenue = 534_350_000;
+export const targetRevenue = 534_351_817;
 
 export function getCurrentRanking(): number {
   const currentRevenue = getLatestCumulativeRevenue();
