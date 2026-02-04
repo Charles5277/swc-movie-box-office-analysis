@@ -134,6 +134,7 @@ export const latestDaily: DailySnapshot = {
   dayOfWeek: "二",
   dailyRevenue: 10_871_000,
   cumulativeRevenue: 417_555_000,
+  cumulativeTickets: 1_516_391,
   updatedAt: "2026-02-04 09:00:00",
   isEstimate: true,
 };
