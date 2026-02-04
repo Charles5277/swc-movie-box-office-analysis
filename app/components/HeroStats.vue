@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { weeklyData, movieInfo, getCurrentRanking, getLatestCumulativeRevenue } from "~/data/box-office";
+import { weeklyData, movieInfo, getCurrentRanking, getLatestCumulativeRevenue, getLatestCumulativeTickets } from "~/data/box-office";
 
-const latestData = weeklyData[weeklyData.length - 1];
 const latestCumulativeRevenue = getLatestCumulativeRevenue();
+const latestCumulativeTickets = getLatestCumulativeTickets();
 const currentRanking = getCurrentRanking();
 
 function formatCurrency(value: number): string {
@@ -29,7 +29,7 @@ const stats = [
   },
   {
     label: "累計觀影人次",
-    value: `${formatNumber(latestData.cumulativeTickets)} 人`,
+    value: `${formatNumber(latestCumulativeTickets)} 人`,
     icon: "i-lucide-users",
     color: "text-blue-500",
     bgColor: "bg-blue-500/10",

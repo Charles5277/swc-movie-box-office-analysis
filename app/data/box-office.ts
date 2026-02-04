@@ -95,6 +95,19 @@ export function getLatestCumulativeRevenue(): number {
   return latestWeek?.cumulativeRevenue ?? 0;
 }
 
+// 取得最新累計人次（優先使用 latestDaily，否則使用 weeklyData）
+export function getLatestCumulativeTickets(): number {
+  if (latestDaily && latestDaily.cumulativeTickets && latestDaily.cumulativeTickets > 0) {
+    const latestWeek = weeklyData[weeklyData.length - 1];
+    // 確保 latestDaily 比 weeklyData 更新
+    if (!latestWeek || latestDaily.cumulativeTickets > latestWeek.cumulativeTickets) {
+      return latestDaily.cumulativeTickets;
+    }
+  }
+  const latestWeek = weeklyData[weeklyData.length - 1];
+  return latestWeek?.cumulativeTickets ?? 0;
+}
+
 export const movieInfo = {
   title: "陽光女子合唱團",
   englishTitle: "Sunshine Women's Choir",

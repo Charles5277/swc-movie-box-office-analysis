@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { weeklyData, formatDateRangeShort } from "~/data/box-office";
+import { weeklyData, formatDateRangeShort, getLatestCumulativeTickets, getLatestCumulativeRevenue } from "~/data/box-office";
 
 // 準備圖表資料：累計人次（萬）
 const chartData = weeklyData.map((d) => ({
@@ -28,13 +28,12 @@ const yNumTicks = 6;
 // 響應式 x 軸刻度
 const { xExplicitTicks } = useChartTicks(chartData.length);
 
-// 累計票房輔助資訊
-const latestWeek = weeklyData[weeklyData.length - 1];
-const latestRevenue = latestWeek?.cumulativeRevenue ?? 0;
+// 累計票房輔助資訊（使用最新數據）
+const latestRevenue = getLatestCumulativeRevenue();
 const formatRevenue = (latestRevenue / 100_000_000).toFixed(2);
 
-// 累計人次
-const latestTickets = latestWeek?.cumulativeTickets ?? 0;
+// 累計人次（使用最新數據）
+const latestTickets = getLatestCumulativeTickets();
 const formatTickets = new Intl.NumberFormat("zh-TW").format(Math.round(latestTickets));
 
 // 里程碑資料
