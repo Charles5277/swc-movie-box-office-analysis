@@ -256,8 +256,8 @@ export const taiwanMovieRankings: MovieRanking[] = [
     isActive: false,
   },
   { rank: 3, title: "那些年，我們一起追的女孩", revenue: 429_054_382, year: 2011, isActive: false },
-  { rank: 4, title: "大尾鱸鰻", revenue: 428_027_419, year: 2013, isActive: false },
-  { rank: 5, title: "陽光女子合唱團", revenue: 428_952_000, year: 2025, isActive: true },
+  { rank: 4, title: "陽光女子合唱團", revenue: 428_952_000, year: 2025, isActive: true },
+  { rank: 5, title: "大尾鱸鰻", revenue: 428_027_419, year: 2013, isActive: false },
   { rank: 6, title: "我的少女時代", revenue: 410_000_000, year: 2015, isActive: false },
   { rank: 7, title: "當男人戀愛時", revenue: 405_402_260, year: 2021, isActive: false },
   {
