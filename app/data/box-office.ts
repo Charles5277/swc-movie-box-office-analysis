@@ -115,9 +115,9 @@ export const movieInfo = {
   rating: "輔12級",
   runtime: "02:14:00",
   distributor: "壹壹喜喜電影股份有限公司",
-  lastUpdated: "2026-02-04 09:00:00",
+  lastUpdated: "2026-02-05 22:01:35",
   dataQuality: {
-    lastUpdated: "2026-02-04 09:00:00",
+    lastUpdated: "2026-02-05 22:01:35",
     dataSource: "國家影視聽中心票房資訊系統",
     totalWeeks: 9,
     missingData: [],
@@ -143,12 +143,12 @@ export const movieInfo = {
 
 // 即時單日資訊（臨時追蹤用，會被完整週資料取代）
 export const latestDaily: DailySnapshot = {
-  date: "2026/02/03",
-  dayOfWeek: "二",
-  dailyRevenue: 10_871_000,
-  cumulativeRevenue: 417_555_000,
-  cumulativeTickets: 1_516_391,
-  updatedAt: "2026-02-04 09:00:00",
+  date: "2026/02/04",
+  dayOfWeek: "三",
+  dailyRevenue: 11_423_000,
+  cumulativeRevenue: 428_952_000,
+  cumulativeTickets: 1_558_415,
+  updatedAt: "2026-02-05 22:01:35",
   isEstimate: true,
 };
 
@@ -257,7 +257,7 @@ export const taiwanMovieRankings: MovieRanking[] = [
   },
   { rank: 3, title: "那些年，我們一起追的女孩", revenue: 429_054_382, year: 2011, isActive: false },
   { rank: 4, title: "大尾鱸鰻", revenue: 428_027_419, year: 2013, isActive: false },
-  { rank: 5, title: "陽光女子合唱團", revenue: 417_555_000, year: 2025, isActive: true },
+  { rank: 5, title: "陽光女子合唱團", revenue: 428_952_000, year: 2025, isActive: true },
   { rank: 6, title: "我的少女時代", revenue: 410_000_000, year: 2015, isActive: false },
   { rank: 7, title: "當男人戀愛時", revenue: 405_402_260, year: 2021, isActive: false },
   {
