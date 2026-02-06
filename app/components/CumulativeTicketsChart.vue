@@ -1,12 +1,35 @@
 <script setup lang="ts">
-import { weeklyData, formatDateRangeShort, getLatestCumulativeTickets, getLatestCumulativeRevenue } from "~/data/box-office";
+import {
+  weeklyData,
+  latestDaily,
+  formatDateRangeShort,
+  formatDailyDateShort,
+  getLatestCumulativeTickets,
+  getLatestCumulativeRevenue,
+  hasNewerDailyData,
+} from "~/data/box-office";
 
-// 準備圖表資料：累計人次（萬）
-const chartData = weeklyData.map((d) => ({
+// 週報資料
+const weeklyChartData = weeklyData.map((d) => ({
   week: d.week,
   dateRange: d.dateRange,
+  label: formatDateRangeShort(d.dateRange),
   cumulativeTickets: d.cumulativeTickets / 10_000,
 }));
+
+// 加入即時數據點（如果有更新的數據且有人次資料）
+const chartData =
+  hasNewerDailyData() && latestDaily.cumulativeTickets
+    ? [
+        ...weeklyChartData,
+        {
+          week: weeklyData.length + 0.5,
+          dateRange: latestDaily.date,
+          label: formatDailyDateShort(latestDaily.date),
+          cumulativeTickets: latestDaily.cumulativeTickets / 10_000,
+        },
+      ]
+    : weeklyChartData;
 
 const categories = {
   cumulativeTickets: {
@@ -17,7 +40,7 @@ const categories = {
 
 const xFormatter = (i: number) => {
   const d = chartData[i];
-  return d ? formatDateRangeShort(d.dateRange) : "";
+  return d ? d.label : "";
 };
 
 const yFormatter = (tick: number) => (tick === 0 ? "0" : `${tick.toFixed(0)}`);

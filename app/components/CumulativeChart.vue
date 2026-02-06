@@ -1,18 +1,36 @@
 <script setup lang="ts">
 import {
   weeklyData,
+  latestDaily,
   targetRevenue,
   getProgressPercentage,
   formatDateRangeShort,
+  formatDailyDateShort,
+  hasNewerDailyData,
 } from "~/data/box-office";
 
-// 只顯示實際資料
-const chartData = weeklyData.map((d) => ({
+// 週報資料
+const weeklyChartData = weeklyData.map((d) => ({
   week: d.week,
   dateRange: d.dateRange,
+  label: formatDateRangeShort(d.dateRange),
   cumulative: d.cumulativeRevenue / 100_000_000,
   target: targetRevenue / 100_000_000,
 }));
+
+// 加入即時數據點（如果有更新的數據）
+const chartData = hasNewerDailyData()
+  ? [
+      ...weeklyChartData,
+      {
+        week: weeklyData.length + 0.5,
+        dateRange: latestDaily.date,
+        label: formatDailyDateShort(latestDaily.date),
+        cumulative: latestDaily.cumulativeRevenue / 100_000_000,
+        target: targetRevenue / 100_000_000,
+      },
+    ]
+  : weeklyChartData;
 
 const categories = {
   cumulative: {
@@ -27,7 +45,7 @@ const categories = {
 
 const xFormatter = (i: number) => {
   const d = chartData[i];
-  return d ? formatDateRangeShort(d.dateRange) : "";
+  return d ? d.label : "";
 };
 
 const yFormatter = (tick: number) => (tick === 0 ? "0" : `${tick.toFixed(1)} 億`);

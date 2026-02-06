@@ -108,6 +108,23 @@ export function getLatestCumulativeTickets(): number {
   return latestWeek?.cumulativeTickets ?? 0;
 }
 
+// 格式化即時數據的日期顯示（如 "2/4"）
+export function formatDailyDateShort(date: string): string {
+  // date 格式: "2026/02/04"
+  const parts = date.split("/");
+  if (parts.length !== 3) return date;
+  const month = Number.parseInt(parts[1]!, 10);
+  const day = Number.parseInt(parts[2]!, 10);
+  return `${month}/${day}`;
+}
+
+// 檢查是否有比 weeklyData 更新的即時數據
+export function hasNewerDailyData(): boolean {
+  if (!latestDaily || latestDaily.cumulativeRevenue <= 0) return false;
+  const latestWeek = weeklyData[weeklyData.length - 1];
+  return !latestWeek || latestDaily.cumulativeRevenue > latestWeek.cumulativeRevenue;
+}
+
 export const movieInfo = {
   title: "陽光女子合唱團",
   englishTitle: "Sunshine Women's Choir",
