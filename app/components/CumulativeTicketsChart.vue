@@ -18,18 +18,18 @@ const weeklyChartData = weeklyData.map((d) => ({
 }));
 
 // 加入即時數據點（如果有更新的數據且有人次資料）
-const chartData =
-  hasNewerDailyData() && latestDaily.cumulativeTickets
-    ? [
-        ...weeklyChartData,
-        {
-          week: weeklyData.length + 0.5,
-          dateRange: latestDaily.date,
-          label: formatDailyDateShort(latestDaily.date),
-          cumulativeTickets: latestDaily.cumulativeTickets / 10_000,
-        },
-      ]
-    : weeklyChartData;
+const hasDaily = hasNewerDailyData() && latestDaily.cumulativeTickets;
+const chartData = hasDaily
+  ? [
+      ...weeklyChartData,
+      {
+        week: weeklyData.length + 0.5,
+        dateRange: latestDaily.date,
+        label: `${formatDailyDateShort(latestDaily.date)}*`,
+        cumulativeTickets: latestDaily.cumulativeTickets / 10_000,
+      },
+    ]
+  : weeklyChartData;
 
 const categories = {
   cumulativeTickets: {

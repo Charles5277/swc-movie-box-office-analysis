@@ -19,13 +19,14 @@ const weeklyChartData = weeklyData.map((d) => ({
 }));
 
 // 加入即時數據點（如果有更新的數據）
-const chartData = hasNewerDailyData()
+const hasDaily = hasNewerDailyData();
+const chartData = hasDaily
   ? [
       ...weeklyChartData,
       {
         week: weeklyData.length + 0.5,
         dateRange: latestDaily.date,
-        label: formatDailyDateShort(latestDaily.date),
+        label: `${formatDailyDateShort(latestDaily.date)}*`,
         cumulative: latestDaily.cumulativeRevenue / 100_000_000,
         target: targetRevenue / 100_000_000,
       },
