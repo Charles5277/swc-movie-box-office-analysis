@@ -132,11 +132,11 @@ export const movieInfo = {
   rating: "輔12級",
   runtime: "02:14:00",
   distributor: "壹壹喜喜電影股份有限公司",
-  lastUpdated: "2026-02-06 22:00:00",
+  lastUpdated: "2026-02-09 12:00:00",
   dataQuality: {
-    lastUpdated: "2026-02-06 22:00:00",
+    lastUpdated: "2026-02-09 12:00:00",
     dataSource: "國家影視聽中心票房資訊系統",
-    totalWeeks: 9,
+    totalWeeks: 10,
     missingData: [],
     anomalies: [
       {
@@ -159,15 +159,7 @@ export const movieInfo = {
 };
 
 // 即時單日資訊（臨時追蹤用，會被完整週資料取代）
-export const latestDaily: DailySnapshot = {
-  date: "2026/02/05",
-  dayOfWeek: "四",
-  dailyRevenue: 10_578_000,
-  cumulativeRevenue: 439_531_000,
-  cumulativeTickets: 1_597_368,
-  updatedAt: "2026-02-06 22:00:00",
-  isEstimate: true,
-};
+export const latestDaily: DailySnapshot | null = null;
 
 // 完整週資料（確認後的正式資料）
 export const weeklyData: WeeklyBoxOffice[] = [
@@ -261,18 +253,28 @@ export const weeklyData: WeeklyBoxOffice[] = [
     changeRate: -4.78,
     theaters: 90,
   },
+  {
+    week: 10,
+    dateRange: "2026/02/02~2026/02/08",
+    revenue: 92_178_177,
+    tickets: 333_470,
+    cumulativeRevenue: 485_880_940,
+    cumulativeTickets: 1_762_409,
+    changeRate: -36.53,
+    theaters: 88,
+  },
 ];
 
 export const taiwanMovieRankings: MovieRanking[] = [
   { rank: 1, title: "海角七號", revenue: 534_351_817, year: 2008, isActive: false },
+  { rank: 2, title: "陽光女子合唱團", revenue: 485_880_940, year: 2025, isActive: true },
   {
-    rank: 2,
+    rank: 3,
     title: "賽德克·巴萊（上）：太陽旗",
     revenue: 472_650_000,
     year: 2011,
     isActive: false,
   },
-  { rank: 3, title: "陽光女子合唱團", revenue: 439_531_000, year: 2025, isActive: true },
   { rank: 4, title: "那些年，我們一起追的女孩", revenue: 429_054_382, year: 2011, isActive: false },
   { rank: 5, title: "大尾鱸鰻", revenue: 428_027_419, year: 2013, isActive: false },
   { rank: 6, title: "我的少女時代", revenue: 410_000_000, year: 2015, isActive: false },
