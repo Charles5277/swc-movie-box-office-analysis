@@ -256,18 +256,18 @@ export const weeklyData: WeeklyBoxOffice[] = [
   {
     week: 10,
     dateRange: "2026/02/02~2026/02/08",
-    revenue: 92_178_177,
-    tickets: 333_470,
-    cumulativeRevenue: 485_880_940,
-    cumulativeTickets: 1_762_409,
-    changeRate: -36.53,
+    revenue: 95_133_745,
+    tickets: 345_016,
+    cumulativeRevenue: 488_836_508,
+    cumulativeTickets: 1_773_955,
+    changeRate: -34.5,
     theaters: 88,
   },
 ];
 
 export const taiwanMovieRankings: MovieRanking[] = [
   { rank: 1, title: "海角七號", revenue: 534_351_817, year: 2008, isActive: false },
-  { rank: 2, title: "陽光女子合唱團", revenue: 485_880_940, year: 2025, isActive: true },
+  { rank: 2, title: "陽光女子合唱團", revenue: 488_836_508, year: 2025, isActive: true },
   {
     rank: 3,
     title: "賽德克·巴萊（上）：太陽旗",
