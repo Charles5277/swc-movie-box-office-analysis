@@ -159,7 +159,15 @@ export const movieInfo = {
 };
 
 // 即時單日資訊（臨時追蹤用，會被完整週資料取代）
-export const latestDaily: DailySnapshot | null = null;
+export const latestDaily: DailySnapshot | null = {
+  date: "2026/02/09",
+  dayOfWeek: "一",
+  dailyRevenue: 8_567_000,
+  cumulativeRevenue: 497_521_000,
+  cumulativeTickets: 1_805_536,
+  updatedAt: "2026-02-10 00:00:00",
+  isEstimate: true,
+};
 
 // 完整週資料（確認後的正式資料）
 export const weeklyData: WeeklyBoxOffice[] = [
