@@ -160,12 +160,12 @@ export const movieInfo = {
 
 // 即時單日資訊（臨時追蹤用，會被完整週資料取代）
 export const latestDaily: DailySnapshot | null = {
-  date: "2026/02/09",
-  dayOfWeek: "一",
-  dailyRevenue: 8_567_000,
-  cumulativeRevenue: 497_521_000,
-  cumulativeTickets: 1_805_536,
-  updatedAt: "2026-02-10 00:00:00",
+  date: "2026/02/10",
+  dayOfWeek: "二",
+  dailyRevenue: 8_031_000,
+  cumulativeRevenue: 505_552_000,
+  cumulativeTickets: 1_835_048,
+  updatedAt: "2026-02-11 00:00:00",
   isEstimate: true,
 };
 
