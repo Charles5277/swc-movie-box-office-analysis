@@ -160,13 +160,14 @@ export const movieInfo = {
 
 // 即時單日資訊（臨時追蹤用，會被完整週資料取代）
 export const latestDaily: DailySnapshot | null = {
-  date: "2026/02/12",
-  dayOfWeek: "四",
-  dailyRevenue: 9_092_000,
-  cumulativeRevenue: 523_163_000,
-  cumulativeTickets: 1_899_730,
-  updatedAt: "2026-02-13 00:00:00",
+  date: "2026/02/14",
+  dayOfWeek: "五",
+  dailyRevenue: 0, // 待確認
+  cumulativeRevenue: 536_000_000,
+  cumulativeTickets: 1_945_000, // 估算值（以平均票價 275 元計算）
+  updatedAt: "2026-02-14 12:00:00",
   isEstimate: true,
+  note: "已超越海角七號票房紀錄，確切數字待官方公布",
 };
 
 // 完整週資料（確認後的正式資料）
@@ -274,8 +275,8 @@ export const weeklyData: WeeklyBoxOffice[] = [
 ];
 
 export const taiwanMovieRankings: MovieRanking[] = [
-  { rank: 1, title: "海角七號", revenue: 534_351_817, year: 2008, isActive: false },
-  { rank: 2, title: "陽光女子合唱團", revenue: 488_836_508, year: 2025, isActive: true },
+  { rank: 1, title: "陽光女子合唱團", revenue: 536_000_000, year: 2025, rating: "輔12級", isActive: true },
+  { rank: 2, title: "海角七號", revenue: 534_351_817, tickets: 2_330_000, year: 2008, rating: "普遍級", isActive: false },
   {
     rank: 3,
     title: "賽德克·巴萊（上）：太陽旗",
@@ -298,7 +299,9 @@ export const taiwanMovieRankings: MovieRanking[] = [
   { rank: 10, title: "陣頭", revenue: 317_499_033, year: 2012, isActive: false },
 ];
 
+// 目標數據（海角七號）
 export const targetRevenue = 534_351_817;
+export const targetTickets = 2_330_000;
 
 export function getCurrentRanking(): number {
   const currentRevenue = getLatestCumulativeRevenue();
@@ -306,6 +309,7 @@ export function getCurrentRanking(): number {
   return taiwanMovieRankings.findIndex((m) => m.revenue <= currentRevenue) + 1;
 }
 
+// 票房相關函數
 export function getGapToFirst(): number {
   const currentRevenue = getLatestCumulativeRevenue();
   if (!currentRevenue) return targetRevenue;
@@ -316,6 +320,19 @@ export function getProgressPercentage(): number {
   const currentRevenue = getLatestCumulativeRevenue();
   if (!currentRevenue) return 0;
   return (currentRevenue / targetRevenue) * 100;
+}
+
+// 觀影人次相關函數
+export function getTicketsGapToFirst(): number {
+  const currentTickets = getLatestCumulativeTickets();
+  if (!currentTickets) return targetTickets;
+  return targetTickets - currentTickets;
+}
+
+export function getTicketsProgressPercentage(): number {
+  const currentTickets = getLatestCumulativeTickets();
+  if (!currentTickets) return 0;
+  return (currentTickets / targetTickets) * 100;
 }
 
 // 衍生指標計算函數

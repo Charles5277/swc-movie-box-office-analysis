@@ -1,35 +1,12 @@
 <script setup lang="ts">
-import {
-  weeklyData,
-  latestDaily,
-  formatDateRangeShort,
-  formatDailyDateShort,
-  getLatestCumulativeTickets,
-  getLatestCumulativeRevenue,
-  hasNewerDailyData,
-} from "~/data/box-office";
+import { weeklyData, formatDateRangeShort } from "~/data/box-office";
 
-// 週報資料
-const weeklyChartData = weeklyData.map((d) => ({
+// 準備圖表資料：累計人次（萬）
+const chartData = weeklyData.map((d) => ({
   week: d.week,
   dateRange: d.dateRange,
-  label: formatDateRangeShort(d.dateRange),
   cumulativeTickets: d.cumulativeTickets / 10_000,
 }));
-
-// 加入即時數據點（如果有更新的數據且有人次資料）
-const hasDaily = hasNewerDailyData() && latestDaily.cumulativeTickets;
-const chartData = hasDaily
-  ? [
-      ...weeklyChartData,
-      {
-        week: weeklyData.length + 0.5,
-        dateRange: latestDaily.date,
-        label: `${formatDailyDateShort(latestDaily.date)}*`,
-        cumulativeTickets: latestDaily.cumulativeTickets / 10_000,
-      },
-    ]
-  : weeklyChartData;
 
 const categories = {
   cumulativeTickets: {
@@ -40,7 +17,7 @@ const categories = {
 
 const xFormatter = (i: number) => {
   const d = chartData[i];
-  return d ? d.label : "";
+  return d ? formatDateRangeShort(d.dateRange) : "";
 };
 
 const yFormatter = (tick: number) => (tick === 0 ? "0" : `${tick.toFixed(0)}`);
@@ -51,12 +28,13 @@ const yNumTicks = 6;
 // 響應式 x 軸刻度
 const { xExplicitTicks } = useChartTicks(chartData.length);
 
-// 累計票房輔助資訊（使用最新數據）
-const latestRevenue = getLatestCumulativeRevenue();
+// 累計票房輔助資訊
+const latestWeek = weeklyData[weeklyData.length - 1];
+const latestRevenue = latestWeek?.cumulativeRevenue ?? 0;
 const formatRevenue = (latestRevenue / 100_000_000).toFixed(2);
 
-// 累計人次（使用最新數據）
-const latestTickets = getLatestCumulativeTickets();
+// 累計人次
+const latestTickets = latestWeek?.cumulativeTickets ?? 0;
 const formatTickets = new Intl.NumberFormat("zh-TW").format(Math.round(latestTickets));
 
 // 里程碑資料

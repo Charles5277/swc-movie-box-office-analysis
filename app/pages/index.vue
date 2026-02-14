@@ -93,7 +93,10 @@ useSchemaOrg([
             奪冠進度
           </h2>
         </div>
-        <CountdownCard />
+        <div class="space-y-6">
+          <RevenueAchievement />
+          <TicketsChallenge />
+        </div>
       </section>
 
       <!-- 排行榜 -->

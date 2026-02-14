@@ -13,7 +13,9 @@ export interface MovieRanking {
   rank: number;
   title: string;
   revenue: number;
+  tickets?: number; // 觀影人次（部分電影可能沒有資料）
   year: number;
+  rating?: string; // 電影分級（如：普遍級、輔12級）
   isActive: boolean;
 }
 
