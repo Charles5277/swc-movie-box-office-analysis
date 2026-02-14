@@ -97,6 +97,9 @@ useSchemaOrg([
           <RevenueAchievement />
           <TicketsChallenge />
         </div>
+        <p class="mt-4 text-xs text-neutral-500 dark:text-neutral-400">
+          *適逢過年春節連假期，2/13~2/22 全台票房與觀影人次準確數據將於 2/23 (一) 公布後更新
+        </p>
       </section>
 
       <!-- 排行榜 -->
