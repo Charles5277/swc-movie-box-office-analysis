@@ -27,6 +27,9 @@ importers:
         specifier: ^4.6.4
         version: 4.6.4(vue@3.5.27(typescript@5.9.3))
     devDependencies:
+      '@iconify-json/simple-icons':
+        specifier: ^1.2.73
+        version: 1.2.73
       nuxt-charts-cli:
         specifier: ^1.0.1
         version: 1.0.1
@@ -570,6 +573,9 @@ packages:
 
   '@floating-ui/vue@1.1.10':
     resolution: {integrity: sha512-vdf8f6rHnFPPLRsmL4p12wYl+Ux4mOJOkjzKEMYVnwdf7UFdvBtHlLvQyx8iKG5vhPRbDRgZxdtpmyigDPjzYg==}
+
+  '@iconify-json/simple-icons@1.2.73':
+    resolution: {integrity: sha512-nQZTwul4c2zBqH/aLP4zMOiElj93T6HawbrP+sFQKpxmBdS5x1duCK3cAnkj6dntHz84EYkzaQRM83V2pj4qxA==}
 
   '@iconify/collections@1.0.646':
     resolution: {integrity: sha512-zA5Gr1MJm1SI0TjOUl7wu4kvBWXQ6Uh8ALEtqQ5ucXyUxP2M8m2bk2hfVtGykSdMlDB+Xs2AHbJ9pQqayz9WGQ==}
@@ -5949,6 +5955,10 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
+
+  '@iconify-json/simple-icons@1.2.73':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify/collections@1.0.646':
     dependencies:

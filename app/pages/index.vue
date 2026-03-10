@@ -45,8 +45,17 @@ useSchemaOrg([
   <div
     class="min-h-screen bg-gradient-to-b from-neutral-100 via-neutral-50 to-neutral-100 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950"
   >
-    <!-- Color Mode Toggle -->
-    <div class="fixed top-4 right-4 z-50">
+    <!-- Top Right Actions -->
+    <div class="fixed top-4 right-4 z-50 flex items-center gap-1">
+      <UButton
+        to="https://github.com/YuDefine/swc-movie-box-office-analysis"
+        target="_blank"
+        variant="ghost"
+        color="neutral"
+        size="lg"
+        icon="i-simple-icons-github"
+        aria-label="GitHub"
+      />
       <UButton
         variant="ghost"
         color="neutral"
