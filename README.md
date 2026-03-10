@@ -32,7 +32,7 @@
 |------|------|
 | 框架 | [Nuxt v4](https://nuxt.com/) |
 | UI | [@nuxt/ui v4](https://ui.nuxt.com/) |
-| 圖表 | [nuxt-charts](https://github.com/nuxt-modules/charts) (vue-chrts) |
+| 圖表 | [nuxt-charts](https://github.com/nuxt-modules/charts) |
 | 內容管理 | [@nuxt/content v3](https://content.nuxt.com/) + [Nuxt Studio](https://nuxt.studio/) |
 | SEO | [@nuxtjs/seo](https://nuxtseo.com/) |
 | 字體 | [Huninn 粉圓體](https://fonts.google.com/specimen/Huninn) (Google Fonts) |
