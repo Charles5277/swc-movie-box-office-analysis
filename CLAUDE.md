@@ -27,8 +27,8 @@ pnpm generate
 
 ## 技術棧
 
-- **框架:** Nuxt 4.3 + Vue 3.5
-- **UI:** @nuxt/ui 4.4 (主題色: amber)
+- **框架:** Nuxt 4
+- **UI:** @nuxt/ui 4.4
 - **圖表:** nuxt-charts 2.1
 - **內容管理:** @nuxt/content 3 + nuxt-studio
 - **字體:** Huninn (粉圓體，Google Fonts)
