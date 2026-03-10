@@ -2,7 +2,7 @@
 
 > 追蹤台灣電影《陽光女子合唱團》票房表現的即時數據視覺化分析平台
 
-🔗 **線上版：[swc.yudefine.com.tw](https://swc.yudefine.com.tw)**
+🔗 **網站：[swc.yudefine.com.tw](https://swc.yudefine.com.tw)**
 
 ## 功能特色
 
@@ -15,7 +15,9 @@
 
 ## 截圖預覽
 
-> 前往 [swc.yudefine.com.tw](https://swc.yudefine.com.tw) 查看線上版本
+| 亮色模式 | 深色模式 |
+|---------|---------|
+| ![亮色模式](public/screenshots/light.png) | ![深色模式](public/screenshots/dark.png) |
 
 ## 技術棧
 
