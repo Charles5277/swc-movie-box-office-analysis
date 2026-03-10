@@ -30,8 +30,8 @@
 
 | 類別 | 技術 |
 |------|------|
-| 框架 | [Nuxt 4](https://nuxt.com/) + [Vue 3](https://vuejs.org/) + TypeScript |
-| UI | [@nuxt/ui v4](https://ui.nuxt.com/) (主題色: amber) |
+| 框架 | [Nuxt v4](https://nuxt.com/) |
+| UI | [@nuxt/ui v4](https://ui.nuxt.com/) |
 | 圖表 | [nuxt-charts](https://github.com/nuxt-modules/charts) (vue-chrts) |
 | 內容管理 | [@nuxt/content v3](https://content.nuxt.com/) + [Nuxt Studio](https://nuxt.studio/) |
 | SEO | [@nuxtjs/seo](https://nuxtseo.com/) |
