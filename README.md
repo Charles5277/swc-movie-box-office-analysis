@@ -15,9 +15,16 @@
 
 ## 截圖預覽
 
-| 亮色模式 | 深色模式 |
-|---------|---------|
-| ![亮色模式](public/screenshots/light.png) | ![深色模式](public/screenshots/dark.png) |
+<table>
+  <tr>
+    <th>亮色模式</th>
+    <th>深色模式</th>
+  </tr>
+  <tr>
+    <td><img src="public/screenshots/light.png" alt="亮色模式" width="400" /></td>
+    <td><img src="public/screenshots/dark.png" alt="深色模式" width="400" /></td>
+  </tr>
+</table>
 
 ## 技術棧
 
