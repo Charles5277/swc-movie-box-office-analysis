@@ -30,7 +30,7 @@
 
 | 類別 | 技術 |
 |------|------|
-| 框架 | [Nuxt v4](https://nuxt.com/) |
+| 框架 | [Nuxt 4](https://nuxt.com/) (Vue 3) |
 | UI | [@nuxt/ui v4](https://ui.nuxt.com/) |
 | 圖表 | [nuxt-charts](https://github.com/nuxt-modules/charts) |
 | 內容管理 | [@nuxt/content v3](https://content.nuxt.com/) + [Nuxt Studio](https://nuxt.studio/) |
