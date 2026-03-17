@@ -1,12 +1,6 @@
 <script setup lang="ts">
 const { movieInfo, weeklyData, latestDaily, taiwanMovieRankings } = useBoxOfficeData();
 
-const colorMode = useColorMode();
-
-function toggleColorMode() {
-  colorMode.preference = colorMode.value === "dark" ? "light" : "dark";
-}
-
 const pageTitle = computed(() => `${movieInfo.value.title} - 台灣票房分析`);
 const pageDescription = computed(() => {
   const revenue = getLatestCumulativeRevenue(weeklyData.value, latestDaily.value);
@@ -65,13 +59,7 @@ onMounted(() => {
         icon="i-simple-icons-github"
         aria-label="GitHub"
       />
-      <UButton
-        variant="ghost"
-        color="neutral"
-        size="lg"
-        :icon="colorMode.value === 'dark' ? 'i-heroicons-sun' : 'i-heroicons-moon'"
-        @click="toggleColorMode"
-      />
+      <UColorModeButton variant="ghost" color="neutral" size="lg" />
     </div>
 
     <!-- ══════════════════════════════════════ -->
