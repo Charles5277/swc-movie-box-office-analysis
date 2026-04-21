@@ -135,3 +135,27 @@ weeks:
     cumulativeTickets: 2768822
     changeRate: -27.57
     theaters: 86
+  - week: 18
+    dateRange: "2026/03/30~2026/04/05"
+    revenue: 6189515
+    tickets: 23104
+    cumulativeRevenue: 766232726
+    cumulativeTickets: 2791926
+    changeRate: -19.76
+    theaters: 86
+  - week: 19
+    dateRange: "2026/04/06~2026/04/12"
+    revenue: 3787161
+    tickets: 14398
+    cumulativeRevenue: 770019887
+    cumulativeTickets: 2806324
+    changeRate: -38.81
+    theaters: 83
+  - week: 20
+    dateRange: "2026/04/13~2026/04/19"
+    revenue: 1937707
+    tickets: 7397
+    cumulativeRevenue: 771957594
+    cumulativeTickets: 2813721
+    changeRate: -48.83
+    theaters: 76
